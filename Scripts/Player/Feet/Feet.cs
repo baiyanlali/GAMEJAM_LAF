@@ -126,11 +126,14 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
         if (rd != null)
         {
             rd.velocity = new Vector2( move_vec * speed, rd.velocity.y );
-            //if (move_vec * player_face < 0) 
-            //{
-            //    player_face = -player_face;
-            //    this.transform.parent.localScale = -this.transform.parent.localScale; 
-            //}
+            if (move_vec * player_face < 0)
+            {
+                player_face = -player_face;
+                if(rd!=null)
+                    rd.gameObject.transform.localScale = new Vector3(-rd.gameObject.transform.localScale.x,
+                                                                     rd.gameObject.transform.localScale.y,
+                                                                     rd.gameObject.transform.localScale.z);
+            }
         }
     }
 
@@ -148,6 +151,7 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
         feetPos = transform.Find("FeetPos");
         player_face = 1;
         ground = LayerMask.GetMask("Ground");
+        
     }
 
 }

@@ -15,3 +15,22 @@ public class PlayerJumping : Event<PlayerJumping>
         Debug.Log("jumped");
     }
 }
+
+
+public class Died : Event<Died>
+{
+    public IdentityController identity;
+    public override void Execute()
+    {
+        if (identity.GetType().Equals(typeof(PlayerControl)))
+        {
+            //player died
+
+        }
+        else
+        {
+            //enemy died
+
+        }
+    }
+}
