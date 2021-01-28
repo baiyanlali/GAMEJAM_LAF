@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Core
+namespace LAF
 {
     /// <summary>
     /// Implement a priority queue

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LAF;
 
 public class Feet_DoubleJump : Feet,IJumpable,IMovable
 {
@@ -21,6 +22,7 @@ public class Feet_DoubleJump : Feet,IJumpable,IMovable
                 if (rd) rd.velocity = Vector2.up * jumpHeight;
                 break;
             case status.jumping:
+
                 if (vec != 0)
                 {
                     jump_time_counter += Time.deltaTime;

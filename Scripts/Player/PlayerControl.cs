@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     public Feet feet;
 
     Rigidbody2D rigid;
+    public Animator anim;
     UnityAction<Rigidbody2D,float> jump;
     UnityAction<Rigidbody2D,float> move;
     
@@ -21,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     {
         feet = this.gameObject.GetComponentInChildren<Feet>();
         rigid = this.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         jump = feet.jump;
         move = feet.move;
