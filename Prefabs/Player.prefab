@@ -227,10 +227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  eyes: {fileID: 0}
+  eyes_Prefab: {fileID: 8584672407136096198, guid: e0828112764e5ef408d75ca913907401,
+    type: 3}
   feet: {fileID: 0}
   hands: {fileID: 0}
-  hasEye: 0
   anim: {fileID: 0}
 --- !u!50 &7083438852090272839
 Rigidbody2D:
@@ -252,7 +252,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7083438852090272838
 MonoBehaviour:
   m_ObjectHideFlags: 0

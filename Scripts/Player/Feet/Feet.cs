@@ -37,6 +37,8 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
     public float checkRadius=0.05f;
     public LayerMask ground;
 
+    public Animator anim;
+
 
    
 
@@ -109,7 +111,12 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
 
     protected bool isGround()
     {
-        return Physics2D.OverlapCircle(feetPos.position,checkRadius,ground);
+        bool isGround = Physics2D.OverlapCircle(feetPos.position, checkRadius, ground);
+        if (anim != null)
+        {
+            anim.SetBool("isGround", isGround);
+        }
+        return isGround ;
     }
 
 
@@ -118,6 +125,12 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
         
         rd = rigid;
         move_vec =vec;
+        if (anim != null)
+        {
+            anim.SetFloat("VelocityX",Mathf.Abs( rigid.velocity.x));
+            anim.SetFloat("VelocityY",rigid.velocity.y);
+
+        }
     }
 
 
@@ -151,7 +164,7 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
         feetPos = transform.Find("FeetPos");
         player_face = 1;
         ground = LayerMask.GetMask("Ground");
-        
+        anim = GetComponentInChildren<Animator>();
     }
 
 }
