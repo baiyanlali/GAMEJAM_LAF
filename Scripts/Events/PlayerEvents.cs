@@ -27,10 +27,10 @@ public class Died : Event<Died>
             //player died
 
         }
-        else
+        else if(identity.GetType().Equals(typeof(Enemy)))
         {
             //enemy died
-
+            Debug.Log($"Enemy {identity.name} died");
         }
     }
 }

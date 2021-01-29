@@ -6,20 +6,25 @@ public class Hands : MonoBehaviour,IAttackable
 {
 
     public GameObject BladePref;
-    public GameObject Blade;
+    public GameObject BladeObj;
+    public Blade blade;
     public Animator BladeAnim;
 
     public void attack(float vec)
     {
         if (vec != 0)
         {
-            if (!Blade)
+            if (!BladeObj)
             {
-                Blade = Instantiate(BladePref, this.transform);
-                BladeAnim = Blade.GetComponent<Animator>();
+                BladeObj = Instantiate(BladePref, this.transform);
+                BladeAnim = BladeObj.GetComponent<Animator>();
+                blade = BladeObj.GetComponent<Blade>();
             }
 
-            BladeAnim.SetTrigger("StartBlade");
+
+            if(blade.curBladeStatus==Blade.bladeStatus.idle)
+                BladeAnim.SetBool("StartBlade",true);
+
         }
     }
 

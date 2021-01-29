@@ -141,3 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebddbaee9466a56419e23d46a2271862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curBladeStatus: 0
+  anim: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512

@@ -10,10 +10,12 @@ public class Blade : MonoBehaviour
         idle,start_to_blade,blading,blade_end
     }
 
-    bladeStatus curBladeStatus;
+    public bladeStatus curBladeStatus;
 
 
     Collider2D collider2d;
+
+    public Animator anim;
 
     Bounds bounds => collider2d.bounds;
 
@@ -23,16 +25,12 @@ public class Blade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyLayer = LayerMask.GetMask("EnemyLayer");
+        anim = GetComponent<Animator>();
+        enemyLayer = LayerMask.GetMask("Enemy");
         curBladeStatus = bladeStatus.idle;
         collider2d = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void switchStatus(int status)
     {
@@ -47,6 +45,7 @@ public class Blade : MonoBehaviour
                 if (status == 1) curBladeStatus = bladeStatus.start_to_blade;
                 break;
             case bladeStatus.start_to_blade:
+                anim.SetBool("StartBlade", false);
                 Collider2D[] colliders = Physics2D.OverlapBoxAll(bounds.center, bounds.size,0,enemyLayer);
                 foreach (var enemy in colliders)
                 {
@@ -59,17 +58,20 @@ public class Blade : MonoBehaviour
 
                     }
                 }
-                curBladeStatus = bladeStatus.blading;
+                if (status == 0) curBladeStatus = bladeStatus.idle;
+                else curBladeStatus = bladeStatus.blading;
                 break;
 
             case bladeStatus.blading:
-                if (status == 0) curBladeStatus = bladeStatus.blade_end;
+                if (status == 0) curBladeStatus = bladeStatus.idle;
                 break;
 
             case bladeStatus.blade_end:
+                //anim.SetBool("StartBlade", false);
                 curBladeStatus = bladeStatus.idle;
                 break;
         }
+        print(curBladeStatus);
     }
 
 
