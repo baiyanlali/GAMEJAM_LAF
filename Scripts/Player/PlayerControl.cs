@@ -7,9 +7,29 @@ delegate void jump(Rigidbody2D rigid, float vec);
 delegate void move(Rigidbody2D rigid, Vector2 vec);
 public class PlayerControl : IdentityController
 {
-    public Eyes eyes;
+    GameObject eyes;
+    public GameObject Eyes
+    {
+        get 
+        {
+            return eyes;
+        }
+        set
+        {
+            eyes = value;
+            if (eyes != null)
+            {
+                eyes.transform.parent = this.transform;
+                eyes.SetActive(false);
+
+            }
+        }
+    }
+    public GameObject eyes_Prefab;
     public Feet feet;
     public Hands hands;
+
+    public bool hasEye=>Eyes;
 
     Rigidbody2D rigid;
     public Animator anim;
@@ -24,14 +44,16 @@ public class PlayerControl : IdentityController
     {
         feet = GetComponentInChildren<Feet>();
         hands = GetComponentInChildren<Hands>();
-        eyes = GetComponentInChildren<Eyes>();
 
-        rigid = this.GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         jump = feet.jump;
         move = feet.move;
         attack = hands.attack;
+
+        Eyes = Instantiate(eyes_Prefab);
+
     }
 
     // Update is called once per frame
@@ -41,5 +63,10 @@ public class PlayerControl : IdentityController
         move(rigid, Input.GetAxis("Horizontal"));
         attack(Input.GetAxis("Fire1"));
         
+    }
+
+    public override void Die()
+    {
+        throw new System.NotImplementedException();
     }
 }

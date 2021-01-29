@@ -12,7 +12,7 @@ public class BladeHitEnemy : Event<BladeHitEnemy>
     public Enemy enemy;
     public override void Execute()
     {
-        Debug.Log($"Blade hit enemy {enemy.name},causing {1} damage");
+        //Debug.Log($"Blade hit enemy {enemy.name},causing {1} damage");
         enemy.health.Decrement(1);
     }
 }
@@ -23,6 +23,15 @@ public class EnemyHitPlayer : Event<EnemyHitPlayer>
     public Enemy enemy;
     public override void Execute()
     {
-        throw new System.NotImplementedException();
+        if (player.hasEye)
+        {
+            GameController.Instance.model.cameraController.switchMode(CameraController.cameraMode.withoutEye);
+            enemy.bindEyes(player.Eyes);
+            player.Eyes = null;
+        }
+        else
+        {
+            //TODO
+        }
     }
 }

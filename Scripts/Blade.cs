@@ -49,7 +49,7 @@ public class Blade : MonoBehaviour
                 Collider2D[] colliders = Physics2D.OverlapBoxAll(bounds.center, bounds.size,0,enemyLayer);
                 foreach (var enemy in colliders)
                 {
-                    print(enemy.name);
+                    //print(enemy.name);
                     Enemy en = enemy.GetComponent<Enemy>();
                     if (en != null)
                     {
@@ -71,7 +71,7 @@ public class Blade : MonoBehaviour
                 curBladeStatus = bladeStatus.idle;
                 break;
         }
-        print(curBladeStatus);
+        //print(curBladeStatus);
     }
 
 

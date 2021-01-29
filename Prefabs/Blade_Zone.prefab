@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1971805894730735938}
   - component: {fileID: 6979576878010374106}
   - component: {fileID: 1689636878}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Blade_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -30,7 +30,22 @@ public class Died : Event<Died>
         else if(identity.GetType().Equals(typeof(Enemy)))
         {
             //enemy died
-            Debug.Log($"Enemy {identity.name} died");
+            identity.Die();
+            //Debug.Log($"Enemy {identity.name} died");
         }
     }
 }
+
+public class PlayerPickEyes : Event<PlayerPickEyes>
+{
+    public GameObject eyes;
+    public PlayerControl player = GameController.Instance.model.player;
+    public override void Execute()
+    {
+        GameController.Instance.model.cameraController.switchMode(CameraController.cameraMode.withEye);
+        player.Eyes = eyes;
+        
+    }
+}
+
+

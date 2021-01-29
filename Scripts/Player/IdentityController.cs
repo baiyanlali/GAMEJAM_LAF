@@ -18,4 +18,7 @@ public abstract class IdentityController : MonoBehaviour
     {
 
     }
+
+    public abstract void Die();
+
 }

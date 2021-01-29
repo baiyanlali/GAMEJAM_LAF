@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7083438851422970359}
   - component: {fileID: 7083438851422970344}
   - component: {fileID: 7083438851422970345}
+  - component: {fileID: 1452387110}
   m_Layer: 0
   m_Name: Player_core
   m_TagString: Untagged
@@ -89,7 +90,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7083438851422970347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -108,6 +109,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19418699, y: 0.25207072}
   m_EdgeRadius: 0
+--- !u!95 &1452387110
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083438851422970347}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65b13f2da7ba859469c86542e683e1db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7083438851580658934
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +189,7 @@ GameObject:
   - component: {fileID: 7083438852090272839}
   - component: {fileID: 7083438852090272838}
   - component: {fileID: 117688560}
+  - component: {fileID: 624090533909808171}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -209,6 +230,7 @@ MonoBehaviour:
   eyes: {fileID: 0}
   feet: {fileID: 0}
   hands: {fileID: 0}
+  hasEye: 0
   anim: {fileID: 0}
 --- !u!50 &7083438852090272839
 Rigidbody2D:
@@ -269,6 +291,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 1
   currentHp: 1
+--- !u!70 &624090533909808171
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083438852090273210}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.038277805}
+  m_Size: {x: 0.20082462, y: 0.24945438}
+  m_Direction: 0
 --- !u!1 &7083438852726144162
 GameObject:
   m_ObjectHideFlags: 0

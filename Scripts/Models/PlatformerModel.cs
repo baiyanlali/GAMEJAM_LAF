@@ -7,4 +7,5 @@ public class PlatformerModel
 {
     public PlayerControl player;
     public Transform spawnPoint;
+    public CameraController cameraController;
 }
