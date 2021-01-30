@@ -6,11 +6,24 @@ using LAF;
 public class Enemy : IdentityController
 {
     // Start is called before the first frame update
-
+    public PatrolPath patrolPath;
+    public float moveSpeed=1f;
+    public Rigidbody2D rigid;
+    PatrolPath.Mover mover;
     // Update is called once per frame
     void Update()
     {
-        
+        if(mover!=null)
+            rigid.MovePosition(mover.Position);
+    }
+
+    private void Start()
+    {
+        if (patrolPath != null)
+        {
+            mover = new PatrolPath.Mover(patrolPath,moveSpeed);
+        }
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     public GameObject eyes;
