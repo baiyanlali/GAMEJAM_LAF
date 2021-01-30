@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model:
-    player: {fileID: 0}
     spawnPoint: {fileID: 0}
     cameraController: {fileID: 6826932176103018039}
 --- !u!114 &6826932176103018039

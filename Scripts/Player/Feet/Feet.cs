@@ -139,6 +139,11 @@ public class Feet : MonoBehaviour,IMovable,IJumpable
         if (rd != null)
         {
             rd.velocity = new Vector2( move_vec * speed, rd.velocity.y );
+
+            //if(move_vec!=0 && jumpState == status.ground)
+            //{
+            //    Simulation.Schedule<PlayerRunning>();
+            //}
             if (move_vec * player_face < 0)
             {
                 player_face = -player_face;

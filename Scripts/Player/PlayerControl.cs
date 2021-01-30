@@ -28,6 +28,7 @@ public class PlayerControl : IdentityController
     public GameObject eyes_Prefab;
     public Feet feet;
     public Hands hands;
+    public AudioSource _audio;
 
     public bool hasEye=>Eyes;
 
@@ -36,7 +37,10 @@ public class PlayerControl : IdentityController
     UnityAction<Rigidbody2D,float> jump;
     UnityAction<Rigidbody2D,float> move;
     UnityAction<float> attack;
-    
+
+
+    public AudioClip jumping, landing, hurt;
+    public AudioClip[] walk;
 
 
     // Start is called before the first frame update
@@ -47,6 +51,7 @@ public class PlayerControl : IdentityController
 
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
 
         jump = feet.jump;
         move = feet.move;

@@ -18,6 +18,7 @@ public class Feet_DoubleJump : Feet,IJumpable,IMovable
                 jump_count++;
                 jump_time_counter = 0;
                 jumpState = status.jumping;
+                Simulation.Schedule<PlayerJumping>();
                 can_jump = true;
                 if (rd) rd.velocity = Vector2.up * jumpHeight;
                 break;
@@ -28,6 +29,7 @@ public class Feet_DoubleJump : Feet,IJumpable,IMovable
                     jump_time_counter += Time.deltaTime;
                     if (jump_time_counter < jumpTime)
                     {
+                        
                         rd.velocity = Vector2.up * jumpHeight;
                         return;
                     }
@@ -60,7 +62,10 @@ public class Feet_DoubleJump : Feet,IJumpable,IMovable
                 break;
             case status.landed:
                 if (vec == 0)
+                {
+                    Simulation.Schedule<PlayerLandGround>();
                     jumpState = status.ground;
+                }
                 break;
 
             case status.ground:

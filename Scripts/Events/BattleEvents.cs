@@ -31,6 +31,7 @@ public class EnemyHitPlayer : Event<EnemyHitPlayer>
         }
         else
         {
+            player.health.Decrement(1);
             //TODO
         }
     }

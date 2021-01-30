@@ -1,20 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using LAF;
 
 public class Enemy : IdentityController
 {
+
+    public bool enable = true;
     // Start is called before the first frame update
     public PatrolPath patrolPath;
     public float moveSpeed=1f;
     public Rigidbody2D rigid;
+    public SpriteRenderer sprite;
     PatrolPath.Mover mover;
+    public int enemy_face=1;
+
+    public AudioSource _audio;
+
+    public AudioClip died;
+
     // Update is called once per frame
     void Update()
     {
-        if(mover!=null)
+        if (mover != null)
+        {
+            sprite.flipX = (mover.Position.x- transform.position.x)>0;
             rigid.MovePosition(mover.Position);
+        }
+        
     }
 
     private void Start()
@@ -24,12 +35,15 @@ public class Enemy : IdentityController
             mover = new PatrolPath.Mover(patrolPath,moveSpeed);
         }
         rigid = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        _audio = GetComponent<AudioSource>();
     }
 
     public GameObject eyes;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!enable) return;
         PlayerControl player = collision.GetComponent<PlayerControl>();
         //print($"Enemy hit player,{player}");
         if (player != null)
@@ -50,8 +64,13 @@ public class Enemy : IdentityController
 
     public override void Die()
     {
-        if(eyes)
+        _audio.PlayOneShot(died);
+        if (eyes)
+        {
             eyes.transform.parent = null;
-        Destroy(gameObject);
+
+        }
+        enable = false;
+        Destroy(gameObject,0.5f);
     }
 }

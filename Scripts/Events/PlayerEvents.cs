@@ -7,12 +7,44 @@ using static LAF.Simulation;
 public class PlayerJumping : Event<PlayerJumping>
 {
 
-    public PlayerControl player;
+    public PlayerControl player=GameController.Instance.model.player;
 
     public override void Execute()
     {
+        if (player._audio && player.jumping)
+        {
+            player._audio.PlayOneShot(player.jumping);
+        }
+    }
+}
+
+public class PlayerLandGround : Event<PlayerLandGround>
+{
+    public PlayerControl player = GameController.Instance.model.player;
+
+    public override void Execute()
+    {
+        if (player._audio && player.landing)
+        {
+            player._audio.PlayOneShot(player.landing);
+        }
+    }
+}
+
+public class PlayerRunning : Event<PlayerRunning>
+{
+    public PlayerControl player = GameController.Instance.model.player;
+
+
+    public override void Execute()
+    {
+
+        if (player._audio && player.walk.Length>0)
+        {
+            player._audio.PlayOneShot(player.walk[Random.Range(0,player.walk.Length)]);
+        }
+
         
-        Debug.Log("jumped");
     }
 }
 
@@ -29,6 +61,7 @@ public class Died : Event<Died>
         }
         else if(identity.GetType().Equals(typeof(Enemy)))
         {
+
             //enemy died
             identity.Die();
             //Debug.Log($"Enemy {identity.name} died");
