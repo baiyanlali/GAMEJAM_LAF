@@ -13,7 +13,7 @@ public class BladeHitEnemy : Event<BladeHitEnemy>
     public override void Execute()
     {
         //Debug.Log($"Blade hit enemy {enemy.name},causing {1} damage");
-        enemy.health.Decrement(1);
+        enemy.BeAttacked(1,player.transform.position);
     }
 }
 
@@ -31,7 +31,7 @@ public class EnemyHitPlayer : Event<EnemyHitPlayer>
         }
         else
         {
-            player.health.Decrement(1);
+            player.BeAttacked(1);
             //TODO
         }
     }

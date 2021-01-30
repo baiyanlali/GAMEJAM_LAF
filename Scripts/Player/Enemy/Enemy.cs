@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using LAF;
 
 public class Enemy : IdentityController
 {
-
+    public enum enemyStatus { patrol,beAttacked }
+        ;
     public bool enable = true;
     // Start is called before the first frame update
     public PatrolPath patrolPath;
@@ -17,10 +19,12 @@ public class Enemy : IdentityController
 
     public AudioClip died;
 
+    public enemyStatus curState;
+
     // Update is called once per frame
     void Update()
     {
-        if (mover != null)
+        if (mover != null && curState==enemyStatus.patrol)
         {
             sprite.flipX = (mover.Position.x- transform.position.x)>0;
             rigid.MovePosition(mover.Position);
@@ -37,6 +41,7 @@ public class Enemy : IdentityController
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         _audio = GetComponent<AudioSource>();
+        curState = enemyStatus.patrol;
     }
 
     public GameObject eyes;
@@ -73,4 +78,31 @@ public class Enemy : IdentityController
         enable = false;
         Destroy(gameObject,0.5f);
     }
+
+    public override void BeAttacked(int value)
+    {
+        health.Decrement(value);
+    }
+
+    public void BeAttacked(int value,Vector2 playerpos)
+    {
+        //print("enemy be attacked");
+        health.Decrement(value);
+        StartCoroutine(beingAttacked(1f,playerpos));
+    }
+
+    
+    IEnumerator beingAttacked(float time,Vector2 playerpos)
+    {
+        curState = enemyStatus.beAttacked;
+        rigid.AddForce(((Vector2)transform.position - playerpos) * 10);
+        yield return new WaitForSeconds(time);
+
+        mover.restart(transform.position, sprite.flipX);// when not flip x, right
+        curState = enemyStatus.patrol;
+
+
+    }
+
+
 }

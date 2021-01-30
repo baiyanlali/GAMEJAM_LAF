@@ -25,6 +25,9 @@ public class Hands : MonoBehaviour,IAttackable
             if(blade.curBladeStatus==Blade.bladeStatus.idle)
                 BladeAnim.SetBool("StartBlade",true);
 
+            else if(blade.curBladeStatus==Blade.bladeStatus.blading)
+                BladeAnim.SetBool("StartBlade", true);
+
         }
     }
 

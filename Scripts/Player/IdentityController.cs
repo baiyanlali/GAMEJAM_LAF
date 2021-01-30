@@ -21,4 +21,6 @@ public abstract class IdentityController : MonoBehaviour
 
     public abstract void Die();
 
+    public abstract void BeAttacked(int value);
+
 }

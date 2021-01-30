@@ -22,6 +22,19 @@ public class PatrolPath : MonoBehaviour
             this.startTime = Time.time;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pos">determine the position of this object(only x will affect)</param>
+        /// <param name="isRight">determine the facing of the object</param>
+        public void restart(Vector2 pos,bool isRight)
+        {
+            float p = (pos.x - path.startPos.x) / (path.endPos.x - path.startPos.x);
+            float cutTime = p * duration;
+            if (isRight) startTime = Time.time - (2 * duration - cutTime);
+            else startTime = Time.time - cutTime;
+        }
+
         public Vector2 Position
         {
             get

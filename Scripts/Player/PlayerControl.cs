@@ -50,7 +50,8 @@ public class PlayerControl : IdentityController
         hands = GetComponentInChildren<Hands>();
 
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         _audio = GetComponent<AudioSource>();
 
         jump = feet.jump;
@@ -73,5 +74,13 @@ public class PlayerControl : IdentityController
     public override void Die()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void BeAttacked(int value)
+    {
+        health.Decrement(value);
+        anim.SetTrigger("Hurt");
+        anim.SetTrigger("Hurt");
+        rigid.AddForce(Vector2.up*200);
     }
 }
