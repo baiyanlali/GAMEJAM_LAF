@@ -23,4 +23,11 @@ public class GameController : MonoBehaviour
         if (Instance == this) Simulation.Tick();
     }
 
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+
 }

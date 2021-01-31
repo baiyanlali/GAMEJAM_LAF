@@ -43,14 +43,12 @@ public class PlayerControl : IdentityController
     public AudioClip[] walk;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         feet = GetComponentInChildren<Feet>();
         hands = GetComponentInChildren<Hands>();
 
         rigid = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
         anim = GetComponentInChildren<Animator>();
         _audio = GetComponent<AudioSource>();
 

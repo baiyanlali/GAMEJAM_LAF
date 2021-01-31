@@ -4,44 +4,26 @@ using LAF;
 
 public class Enemy : IdentityController
 {
-    public enum enemyStatus { patrol,beAttacked }
-        ;
+    
+        
     public bool enable = true;
-    // Start is called before the first frame update
-    public PatrolPath patrolPath;
     public float moveSpeed=1f;
     public Rigidbody2D rigid;
     public SpriteRenderer sprite;
-    PatrolPath.Mover mover;
     public int enemy_face=1;
 
     public AudioSource _audio;
 
     public AudioClip died;
 
-    public enemyStatus curState;
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        if (mover != null && curState==enemyStatus.patrol)
-        {
-            sprite.flipX = (mover.Position.x- transform.position.x)>0;
-            rigid.MovePosition(mover.Position);
-        }
         
-    }
-
-    private void Start()
-    {
-        if (patrolPath != null)
-        {
-            mover = new PatrolPath.Mover(patrolPath,moveSpeed);
-        }
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         _audio = GetComponent<AudioSource>();
-        curState = enemyStatus.patrol;
+        
     }
 
     public GameObject eyes;
@@ -84,23 +66,15 @@ public class Enemy : IdentityController
         health.Decrement(value);
     }
 
-    public void BeAttacked(int value,Vector2 playerpos)
+    public virtual void BeAttacked(int value, Vector2 playerpos)
     {
-        //print("enemy be attacked");
-        health.Decrement(value);
-        StartCoroutine(beingAttacked(1f,playerpos));
+
     }
 
     
-    IEnumerator beingAttacked(float time,Vector2 playerpos)
+    protected virtual IEnumerator beingAttacked(float time,Vector2 playerpos)
     {
-        curState = enemyStatus.beAttacked;
-        rigid.AddForce(((Vector2)transform.position - playerpos) * 10);
-        yield return new WaitForSeconds(time);
-
-        mover.restart(transform.position, sprite.flipX);// when not flip x, right
-        curState = enemyStatus.patrol;
-
+        return null;
 
     }
 

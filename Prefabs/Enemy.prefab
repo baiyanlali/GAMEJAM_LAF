@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6306729008396885204}
   - component: {fileID: 6306729008396885205}
   - component: {fileID: 6306729008396885201}
-  - component: {fileID: 6306729008396885200}
   - component: {fileID: 7443902103666801801}
   - component: {fileID: 461525212669514558}
+  - component: {fileID: 1079123556}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -139,28 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 5
   currentHp: 1
---- !u!114 &6306729008396885200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6306729008396885206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8101cdc9d615a64faf8b9f91e2ad392, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  enable: 1
-  patrolPath: {fileID: 0}
-  moveSpeed: 0.5
-  rigid: {fileID: 0}
-  sprite: {fileID: 0}
-  enemy_face: 1
-  _audio: {fileID: 0}
-  died: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
-  eyes: {fileID: 0}
 --- !u!95 &7443902103666801801
 Animator:
   serializedVersion: 3
@@ -276,6 +254,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1079123556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306729008396885206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39764db10cfe9ac459dac5bf7acd2b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  enable: 1
+  moveSpeed: 0.5
+  rigid: {fileID: 0}
+  sprite: {fileID: 0}
+  enemy_face: 1
+  _audio: {fileID: 0}
+  died: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
+  eyes: {fileID: 0}
+  patrolPath: {fileID: 0}
+  curState: 0
 --- !u!1001 &6306729007059541588
 PrefabInstance:
   m_ObjectHideFlags: 0
